@@ -1,6 +1,8 @@
 #+title: README
 
 Solution for LeetCode.
+[[https://leetcode.com/studyplan/top-100-liked/][hot-100-liked]]
+
 
 * hard
 ** greedy algorithm
