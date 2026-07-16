@@ -1,8 +1,5 @@
-#+title: README
-
 all solved algorithm problems.
 
-Solution for LeetCode.
 [[https://leetcode.com/studyplan/top-100-liked/][hot-100-liked]]
 
 
