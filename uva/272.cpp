@@ -1,0 +1,14 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main() {
+    int c, q = 1;
+    while ((c = getchar()) != EOF) {
+        if (c == '"') {
+            cout << (q ? "``" : "''");
+            q = !q;
+        } else
+            cout << char(c);
+    }
+    return 0;
+}
