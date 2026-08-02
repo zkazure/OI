@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
-using namespace std; 
+#include <stack>
+#include <string>
+using namespace std;
 
 // code_start
 
@@ -7,28 +8,35 @@ class Solution {
 public:
     bool isValid(string s) {
         stack<char> st;
-        for (int i=0; i<s.size(); ++i) {
-            switch (s[i]) {
-            case '{': st.push('}'); break;
-            case '[': st.push(']'); break;
-            case '(': st.push(')'); break;
-            default: {
-                if (st.empty())
-                    return false;
-                if (s[i] == st.top())
-                    st.pop();
-                else return false;
+        for (int i = 0; i < s.length(); i += 1) {
+            bool should_pushed = true;
+
+            if (!st.empty()) {
+                switch (st.top()) {
+                case '(': {
+                    if (s[i] == ')') should_pushed = false;
+                    break;
+                }
+                case '[': {
+                    if (s[i] == ']') should_pushed = false;
+                    break;
+                }
+                case '{': {
+                    if (s[i] == '}') should_pushed = false;
+                    break;
+                }
+                }
             }
+
+            if (should_pushed) {
+                st.push(s[i]);
+            } else {
+                st.pop();
             }
         }
-        if (st.empty())
-            return true;
-        return false;
+
+        return st.empty();
     }
 };
 
 // code_end
-
-int main() {
-    return 0;
-}
