@@ -9,6 +9,58 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// code_start
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if (head == nullptr || k <= 1) {
+            return head;
+        }
+
+        ListNode dummy(0, head);
+
+        head = &dummy;
+        ListNode *tail = head;
+
+        ListNode *prev = head, *curr = head;
+        ListNode *oldFirst = head;
+
+        while (tail != nullptr) {
+            int cnt = 0;
+
+            head = oldFirst;
+            tail = head->next;
+
+            for (; cnt < k && tail != nullptr; ++cnt) {
+                tail = tail->next;
+            }
+            if (cnt != k) {
+                break;
+            }
+
+            oldFirst = head->next;
+            prev = head->next;
+            curr = prev->next;
+
+            prev->next = tail;
+            while (curr != tail) {
+                ListNode *next = curr->next;
+
+                curr->next = prev;
+
+                prev = curr;
+                curr = next;
+            }
+            head->next = prev;
+        }
+
+        return dummy.next;
+    }
+};
+
+// code_end
+
 /** changing val, instead of node
 class Solution {
 public:
@@ -89,6 +141,7 @@ public:
  * };
  */
 
+/**
 class Solution {
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
@@ -126,5 +179,4 @@ public:
         return dummy.next;
     }
 };
-
-// code_end
+*/
